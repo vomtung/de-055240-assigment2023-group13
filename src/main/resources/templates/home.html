@@ -19,5 +19,22 @@
       </div>
    </nav>
       <p>This is the body of the sample view</p>
+   <table>
+      <thead>
+      <tr>
+         <th> Title </th>
+         <th> Content </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:if="${artiles.empty}">
+         <td colspan="2"> No Books Available </td>
+      </tr>
+      <tr th:each="book : ${artiles}">
+         <td><span th:text="${book.title}"> Title </span></td>
+         <td><span th:text="${book.content}"> Author </span></td>
+      </tr>
+      </tbody>
+   </table>
    </body>
 </html>
