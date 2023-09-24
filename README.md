@@ -4,7 +4,9 @@
 # install
 ############################
 install java-17
+
 install maven
+
 install IntelliJ Community or Visual Code
 
 check out the code
