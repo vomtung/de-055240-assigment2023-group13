@@ -1,0 +1,38 @@
+
+<html>
+    <head>
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    </head>
+    <body>
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Academic Rank</a>
+            <ul id="nav-mobile" class= "right hide-on-med-and-down">
+                <li><a href="/scholar">Scholar</a></li>
+            </ul>
+        </div>
+    </nav>
+    <table>
+        <thead>
+        <tr>
+            <th> RANK_NAME </th>
+            <th> ABBREVIATION </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${ranks.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="rank : ${ranks}">
+            <td><span th:text="${rank.rankName}"> RANK_NAME </span></td>
+            <td><span th:text="${rank.abbreviation}"> ABBREVIATION </span></td>
+        </tr>
+        </tbody>
+    </table>
+    </body>
+</html>
