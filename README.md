@@ -1,7 +1,14 @@
 # de-055240-assigment2023-group13
 
+##########################
+#
+# Insall database
+#
+###########################
+https://www.linkedin.com/pulse/introduce-orientdb-tung-vo
+
 ################################
-# install
+# install backend
 ############################
 install java-17
 
@@ -11,6 +18,7 @@ install IntelliJ Community or Visual Code
 
 check out the code
 open cmd
+
 mvn clean install
 
 #thymleaf
