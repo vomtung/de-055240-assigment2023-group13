@@ -1,10 +1,9 @@
 # de-055240-assigment2023-group13
 
-##########################
-#
+
 # Insall database
-#
-###########################
+
+
 https://www.linkedin.com/pulse/introduce-orientdb-tung-vo
 
 ################################
