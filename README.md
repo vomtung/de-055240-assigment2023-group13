@@ -20,7 +20,7 @@ open cmd
 
 <pre>
 mvn clean install
-</pre>pre>  
+</pre>
 
 # thymleaf
 https://www.baeldung.com/thymeleaf-list
