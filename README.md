@@ -7,10 +7,10 @@ This is SpringBoot Spring MVC project
 
 
 https://www.linkedin.com/pulse/introduce-orientdb-tung-vo
-
+--------
 ################################
 # install backend
-############################
+
 install java-17
 
 install maven
