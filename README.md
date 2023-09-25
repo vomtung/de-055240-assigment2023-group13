@@ -20,9 +20,9 @@ open cmd
 
 mvn clean install
 
-#thymleaf
+# thymleaf
 https://www.baeldung.com/thymeleaf-list
 
 
-#OrientDB connect example
+# OrientDB connect example
 https://github.com/orientechnologies/orientdb-jdbc/tree/master
