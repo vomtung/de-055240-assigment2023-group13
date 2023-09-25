@@ -24,6 +24,8 @@ open cmd
 mvn clean install
 </pre>
 
+run SpringBoot project
+
 # thymleaf
 https://www.baeldung.com/thymeleaf-list
 
