@@ -18,7 +18,9 @@ install IntelliJ Community or Visual Code
 check out the code
 open cmd
 
+<pre>
 mvn clean install
+</pre>pre>  
 
 # thymleaf
 https://www.baeldung.com/thymeleaf-list
