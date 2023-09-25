@@ -1,6 +1,6 @@
 # de-055240-assigment2023-group13
 
-# introduction
+# Introduction
 This is SpringBoot Spring MVC project
 
 # Intsall database
@@ -15,7 +15,7 @@ install java-17
 
 install maven
 
-install IntelliJ Community or Visual Code
+install *IntelliJ Community* or *Visual Code*
 
 check out the code
 open cmd
