@@ -32,4 +32,5 @@ https://www.baeldung.com/thymeleaf-list
 
 # OrientDB connect example
 https://github.com/orientechnologies/orientdb/tree/develop
+
 https://github.com/orientechnologies/orientdb-jdbc/tree/master
