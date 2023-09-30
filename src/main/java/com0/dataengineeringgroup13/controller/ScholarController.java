@@ -47,7 +47,7 @@ public class ScholarController {
             ScholarDto dto = new ScholarDto();
             dto.setUserId(rs.getLong("USR_ID"));
             dto.setFirstName(rs.getString("FIRST_NAME"));
-            dto.setLastName(rs.getString("USR_LAST_NAME"));
+            dto.setLastName(rs.getString("LAST_NAME"));
             scholars.add(dto);
         }
 
