@@ -8,6 +8,11 @@ This is SpringBoot Spring MVC project
 
 https://www.linkedin.com/pulse/introduce-orientdb-tung-vo
 
+https://orientdb.org/docs/3.0.x/fiveminute/java.html
+
+https://orientdb.org/docs/3.0.x/gettingstarted/Tutorial-Using-schema-with-graphs.html
+
+go to \orientdb-community-version\bin, run server.bat
 ################################
 # install backend
 
@@ -34,3 +39,14 @@ https://www.baeldung.com/thymeleaf-list
 https://github.com/orientechnologies/orientdb/tree/develop
 
 https://github.com/orientechnologies/orientdb-jdbc/tree/master
+
+
+
+
+<pre>
+CREATE CLASS  SCHOLAR_USER EXTENDS E
+
+CREATE EDGE SCHOLAR_USER FROM ( SELECT FROM SCHOLAR ) TO ( SELECT FROM USER )
+
+SELECT * FROM ( SELECT EXPAND( OUT('SCHOLAR_USER') ) FROM SCHOLAR)
+</pre>
