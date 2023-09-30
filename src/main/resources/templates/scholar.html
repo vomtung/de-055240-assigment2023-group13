@@ -12,9 +12,26 @@
             <a href="/" class="brand-logo">Scholar</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
-                <li><a href="/login">Login</a></li>
                 <li><a href="/academic-rank">Academic Rank</a></li>
+                <li><a href="/login">Login</a></li>
             </ul>
         </div>
     </nav>
+    <table>
+        <thead>
+        <tr>
+            <th> FIRST NAME </th>
+            <th> LAST NAME </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:if="${scholarList.empty}">
+            <td colspan="2"> No Books Available </td>
+        </tr>
+        <tr th:each="scholar : ${scholarList}">
+            <td><span th:text="${scholar.firstName}">FIRST NAME</span></td>
+            <td><span th:text="${scholar.lastName}"> LAST NAME </span></td>
+        </tr>
+        </tbody>
+    </table>
 </html>

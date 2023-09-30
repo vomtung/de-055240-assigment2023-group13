@@ -26,15 +26,13 @@ public class AcademicRankController {
     private String password;
 
     @GetMapping("/academic-rank")
-    public String index(Model model) throws SQLException {
+    public String index(Model model) throws Exception {
 
-        ArticleDto article1 = new ArticleDto(1L,"title 123","content23123");
-        ArticleDto article2 = new ArticleDto(1L,"title 222","content222222222");
         Properties info = new Properties();
         info.put("user", username);
         info.put("password", password);
 
-        Connection conn = (OrientJdbcConnection) DriverManager.getConnection(connectionUrl, info);
+        Connection conn = DriverManager.getConnection(connectionUrl, info);
 
         Statement stmt = conn.createStatement();
 
