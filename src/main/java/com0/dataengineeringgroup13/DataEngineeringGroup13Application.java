@@ -6,7 +6,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @SpringBootApplication
-@EnableWebMvc
 public class DataEngineeringGroup13Application {
 
 	public static void main(String[] args) {
