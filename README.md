@@ -1,7 +1,7 @@
 # de-055240-assigment2023-group13
 
 # Introduction
-This is SpringBoot Spring MVC project
+This is SpringBoot Thymleaft project
 
 # Intsall database
 
