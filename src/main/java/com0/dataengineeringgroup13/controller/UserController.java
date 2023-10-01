@@ -64,7 +64,7 @@ public class UserController {
         Connection conn = DriverManager.getConnection(connectionUrl, info);
         Statement stmt = conn.createStatement();
 
-        for (int i = 10; i< 20; i++) {
+        for (int i = 10; i < 20; i++) {
 
             Faker faker1 = new Faker();
             String firstName = faker1.name().firstName();
@@ -72,6 +72,10 @@ public class UserController {
             String username = faker1.name().username();
             String email = faker1.name().username() + "@mail.kom";
 
+            firstName = firstName.replaceAll("[^A-Za-z0-9]","");
+            lastName = lastName.replaceAll("[^A-Za-z0-9]","");
+            username = username.replaceAll("[^A-Za-z0-9]","");
+            email = email.replaceAll("[^A-Za-z0-9]","");
 
             System.out.println("generateuser-firstName:" + firstName);
             System.out.println("generateuser-lastName:" + lastName);
