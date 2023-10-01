@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
 @Controller
-public class HomeController {
+public class UserController {
 
-    @GetMapping("/")
+    @GetMapping("/user")
     public String index(Model model) {
 
         ArticleDto article1 = new ArticleDto(1L,"title 123","content23123");
