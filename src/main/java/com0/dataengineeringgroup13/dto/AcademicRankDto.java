@@ -1,6 +1,14 @@
 package com0.dataengineeringgroup13.dto;
 
-public class AcademicRankDto {
+import java.io.Serializable;
+
+/**
+ * Academic rank dto
+ *
+ * @author Tung Vo
+ * @since 01/October/2023
+ */
+public class AcademicRankDto implements Serializable {
 
     private Long acaId;
     private String rankName;
