@@ -12,6 +12,8 @@ https://orientdb.org/docs/3.0.x/fiveminute/java.html
 
 https://orientdb.org/docs/3.0.x/gettingstarted/Tutorial-Using-schema-with-graphs.html
 
+https://orientdb.org/docs/3.1.x/sql/Pagination.html
+
 go to \orientdb-community-version\bin, run server.bat
 ################################
 <pre>

@@ -1,6 +1,7 @@
 package com0.dataengineeringgroup13.controller;
 
 import com.github.javafaker.Faker;
+import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.dto.ArticleDto;
 import com0.dataengineeringgroup13.dto.ScholarDto;
 import com0.dataengineeringgroup13.dto.UserDto;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class UserController {
     private String password;
 
     @GetMapping("/user")
-    public String index(Model model) throws Exception {
+    public String index(@RequestParam(required = false) Integer pageNumber, Model model) throws Exception {
 
         Properties info = new Properties();
         info.put("user", username);
@@ -36,9 +38,13 @@ public class UserController {
 
         Connection conn = DriverManager.getConnection(connectionUrl, info);
 
-        Statement stmt = conn.createStatement();
+        if (pageNumber == null || pageNumber < 0) {
+            pageNumber = 0;
+        }
 
-        ResultSet rs = stmt.executeQuery("SELECT * FROM  USER");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  USER  SKIP "+ AppContanst.NUMBER_RECORD_PER_PAGE * pageNumber +
+                " LIMIT " + AppContanst.NUMBER_RECORD_PER_PAGE);
 
         List<UserDto> userList = new ArrayList<>();
         while (rs.next()) {
@@ -50,6 +56,7 @@ public class UserController {
         }
 
         model.addAttribute("userList", userList);
+        model.addAttribute("pageNumber", pageNumber);
 
         return "user";
     }

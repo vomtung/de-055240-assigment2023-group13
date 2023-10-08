@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
     <head>
 
         <!-- Compiled and minified CSS -->
@@ -23,7 +23,7 @@
 
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">Scholar</a>
+            <a href="/" class="brand-logo">User</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/academic-rank">Academic Rank</a></li>
@@ -68,4 +68,8 @@
         </tr>
         </tbody>
     </table>
+    <div style=" position:fixed;bottom:0;">
+        <a class="waves-effect waves-light btn" th:href="@{'/user' (pageNumber=${pageNumber - 1})}"><i class="material-icons left">navigate_before</i>Next</a>
+        <a class="waves-effect waves-light btn" th:href="@{'/user' (pageNumber=${pageNumber + 1})}"><i class="material-icons right">navigate_next</i>Previous</a>
+    </div>
 </html>
