@@ -18,6 +18,9 @@ go to \orientdb-community-version\bin, run server.bat
 .\server.bat
 </pre>
 
+go to  http://172.168.98.82:2480/studio/index.html
+
+
 # install backend
 
 install java-17
@@ -35,8 +38,15 @@ mvn clean install
 
 run SpringBoot project
 
+go to
+http://localhost:8080/
+
+
 # thymleaf
 https://www.baeldung.com/thymeleaf-list
+
+# materializecss icon
+https://materializecss.com/icons.html
 
 
 # OrientDB connect example
