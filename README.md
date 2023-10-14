@@ -47,6 +47,9 @@ http://localhost:8080/
 # thymleaf
 https://www.baeldung.com/thymeleaf-list
 
+# Spring boot form login
+https://www.codeburps.com/post/spring-boot-form-login
+
 # materializecss icon
 https://materializecss.com/icons.html
 
