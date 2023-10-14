@@ -22,6 +22,12 @@ go to \orientdb-community-version\bin, run server.bat
 
 go to  http://172.168.98.82:2480/studio/index.html
 
+login and create schema 
+
+<pre>
+de_assigment_group13
+</pre>
+
 
 # install backend
 
