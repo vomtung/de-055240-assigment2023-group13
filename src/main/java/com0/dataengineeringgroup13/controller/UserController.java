@@ -61,7 +61,7 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("/user/generateuser")
+    @GetMapping("/user/generate-user")
     public String genegrateuser(Model model) throws Exception {
 
         Properties info = new Properties();
@@ -95,10 +95,21 @@ public class UserController {
             VALUES('Jay', 'Miner', 'M')*/
         }
 
+        return "generate-result";
+    }
 
-        ArticleDto article1 = new ArticleDto(1L,"title 123","content23123");
-        ArticleDto article2 = new ArticleDto(1L,"title 222","content222222222");
-        model.addAttribute("artiles", List.of(article1, article2));
+    @GetMapping("/user/truncate")
+    public String truncateAcademicRank(Model model) throws Exception {
+
+        Properties info = new Properties();
+        info.put("user", username);
+        info.put("password", password);
+
+        Connection conn = DriverManager.getConnection(connectionUrl, info);
+        Statement stmt = conn.createStatement();
+
+        stmt.executeQuery("TRUNCATE CLASS USER UNSAFE;");
+
         return "generate-result";
     }
 }
