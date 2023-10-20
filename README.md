@@ -66,9 +66,16 @@ https://github.com/orientechnologies/orientdb/tree/develop
 https://github.com/orientechnologies/orientdb-jdbc/tree/master
 
 
+# generate-data-api
+http://localhost:8080/generate-rank
+http://localhost:8080/truncate-academic-rank
 
 
 <pre>
+CREATE CLASS ACADEMIC_RANK EXTENDS V
+
+CREATE CLASS SCHOLAR EXTENDS V
+
 CREATE CLASS  SCHOLAR_USER EXTENDS E
 
 CREATE EDGE SCHOLAR_USER FROM ( SELECT FROM SCHOLAR ) TO ( SELECT FROM USER )
@@ -80,5 +87,7 @@ CREATE EDGE SCHOLAR_USER FROM ( SELECT FROM SCHOLAR WHERE USR_ID = 3) TO ( SELEC
 SELECT * FROM ( SELECT EXPAND( OUT('SCHOLAR_USER') ) FROM SCHOLAR)
 
 DELETE vertex FROM user where usr_id > 0;
+
+TRUNCATE CLASS ACADEMIC_RANK UNSAFE;
 
 </pre>
