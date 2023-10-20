@@ -10,15 +10,15 @@ import java.io.Serializable;
  */
 public class AcademicRankDto implements Serializable {
 
-    private Long acaId;
+    private Integer acaId;
     private String rankName;
     private String abbreviation;
 
-    public Long getAcaId() {
+    public Integer getAcaId() {
         return acaId;
     }
 
-    public void setAcaId(Long acaId) {
+    public void setAcaId(Integer acaId) {
         this.acaId = acaId;
     }
 
