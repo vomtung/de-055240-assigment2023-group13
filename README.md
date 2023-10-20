@@ -70,8 +70,14 @@ https://github.com/orientechnologies/orientdb-jdbc/tree/master
 http://localhost:8080/generate-rank
 http://localhost:8080/truncate-academic-rank
 
+http://localhost:8080/user/generate-user
+http://localhost:8080/user/truncate
+
 
 <pre>
+
+CREATE CLASS USER EXTENDS V
+
 CREATE CLASS ACADEMIC_RANK EXTENDS V
 
 CREATE CLASS SCHOLAR EXTENDS V
