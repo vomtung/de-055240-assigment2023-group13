@@ -62,7 +62,7 @@ public class UserController {
     }
 
     @GetMapping("/user/generate-user")
-    public String genegrateuser(Model model) throws Exception {
+    public String genegrateuser(@RequestParam(required = false) Integer dataSize, Model model) throws Exception {
 
         Properties info = new Properties();
         info.put("user", username);
@@ -75,7 +75,12 @@ public class UserController {
                 "            VALUES("+ 0+",'admin', 'admin','admin@mail.kom' ,'admin')"
         );
 
-        for (int i = 10; i < 20; i++) {
+        Integer maxSize = 20;
+        if (dataSize != null && dataSize != 0) {
+            maxSize = dataSize;
+        }
+
+        for (int i = 10; i < maxSize; i++) {
 
             Faker faker1 = new Faker();
             String firstName = faker1.name().firstName();
