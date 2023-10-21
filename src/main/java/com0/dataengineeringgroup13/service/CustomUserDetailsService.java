@@ -51,7 +51,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
             if (user != null) {
                 System.out.println("----" + user.getUsername());
-                return new org.springframework.security.core.userdetails.User("admin@mail.com",
+                return new org.springframework.security.core.userdetails.User(user.getUsername(),
                         "$2a$12$cMOcsjy0bKlBjxu/26WqmecmXKckqsERG6Pb/0b0vRo1p8wOFTPi.",
                         List.of());
 

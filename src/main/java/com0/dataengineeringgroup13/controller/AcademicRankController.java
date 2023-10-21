@@ -100,8 +100,7 @@ public class AcademicRankController {
         Connection conn = DriverManager.getConnection(connectionUrl, info);
         Statement stmt = conn.createStatement();
 
-        ResultSet rs = stmt.executeQuery("TRUNCATE CLASS ACADEMIC_RANK UNSAFE;"
-        );
+        stmt.executeQuery("TRUNCATE CLASS ACADEMIC_RANK UNSAFE;");
 
         return "generate-result";
     }
