@@ -66,6 +66,6 @@ public class UniversityController {
         model.addAttribute("scholarList", scholars);
         model.addAttribute("currentUser", currentUser);
 
-        return "scholar";
+        return "university";
     }
 }
