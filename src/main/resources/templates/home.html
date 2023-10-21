@@ -27,7 +27,14 @@
          <ul id="nav-mobile" class= "right hide-on-med-and-down">
             <li><a href="/scholar">Scholar</a></li>
             <li><a href="/academic-rank">Academic Rank</a></li>
-            <li><a href="/login">Login</a></li>
+            <li>
+               <div th:if="${currentUser != null}">
+                  <div th:text=" 'Hi,' + ${currentUser}">Hi, User</div>
+               </div>
+               <div th:unless="${currentUser == 'null'}">
+                  <a href="/login">Login</a>
+               </div>
+            </li>
          </ul>
       </div>
    </nav>
@@ -46,8 +53,8 @@
       <li><a href="/user"><i class="material-icons">account_box</i>user</a></li>
       <li><a href="/academic-rank"><i class="material-symbols-outlined">star_rate_half</i>Academic Rank</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+      <li><a class="subheader">Option</a></li>
+      <li><a class="waves-effect" th:href="@{/logout}">Logout</a></li>
    </ul>
    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
    <!--end side bar-->

@@ -75,7 +75,7 @@ public class UserController {
                 "            VALUES("+ 0+",'admin', 'admin','admin@mail.kom' ,'admin')"
         );
 
-        Integer maxSize = 20;
+        int maxSize = AppContanst.DEFAULT_USER_NUMBER_GENERATE;
         if (dataSize != null && dataSize != 0) {
             maxSize = dataSize;
         }
@@ -86,12 +86,11 @@ public class UserController {
             String firstName = faker1.name().firstName();
             String lastName = faker1.name().lastName();
             String username = faker1.name().username();
-            String email = faker1.name().username() + "@mail.kom";
 
             firstName = firstName.replaceAll("[^A-Za-z0-9]","");
             lastName = lastName.replaceAll("[^A-Za-z0-9]","");
             username = username.replaceAll("[^A-Za-z0-9]","");
-            email = email.replaceAll("[^A-Za-z0-9]","");
+            String email = faker1.name().username() + "@mail.kom";
 
             stmt.executeQuery("INSERT INTO  USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
                     "            VALUES("+ i+",'"+username+"', '"+firstName+"','"+email+"' ,'"+lastName+"')"
