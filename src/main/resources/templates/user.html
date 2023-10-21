@@ -60,7 +60,7 @@
         </thead>
         <tbody>
         <tr th:if="${userList.empty}">
-            <td colspan="2"> No User Available </td>
+            <td colspan="2"> No Data Available </td>
         </tr>
         <tr th:each="user : ${userList}">
             <td><span th:text="${user.firstName}">FIRST NAME</span></td>
