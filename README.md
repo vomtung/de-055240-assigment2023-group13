@@ -68,9 +68,11 @@ https://github.com/orientechnologies/orientdb-jdbc/tree/master
 
 # generate-data-api
 http://localhost:8080/generate-rank
+
 http://localhost:8080/truncate-academic-rank
 
 http://localhost:8080/user/generate-user
+
 http://localhost:8080/user/truncate
 
 

@@ -45,7 +45,14 @@
             <img th:src="@{/images/grass.jpg}" style="width:300px;height:250px;"/>
          </div>
          <a href="#user"></a>
-         <a href="#name"><span class="white-text name">John Doe</span></a>
+         <a href="#name"><span class="white-text name">
+            <div th:if="${currentUser != null}">
+                  <div th:text=" ${currentUser}">Hi, User</div>
+            </div>
+               <div th:unless="${currentUser != null}">
+                  Anonymous
+               </div>
+         </span></a>
          <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
       </div></li>
       <li><a href="/"><i class="material-symbols-outlined">home</i>Home</a>
