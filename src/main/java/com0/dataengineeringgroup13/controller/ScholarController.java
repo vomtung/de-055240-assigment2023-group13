@@ -4,6 +4,8 @@ package com0.dataengineeringgroup13.controller;
 import com0.dataengineeringgroup13.dto.AcademicRankDto;
 import com0.dataengineeringgroup13.dto.ScholarDto;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +33,8 @@ public class ScholarController {
     @GetMapping("/scholar")
     public String index(Model model) throws Exception{
 
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
         Properties info = new Properties();
         info.put("user", username);
         info.put("password", password);
@@ -51,7 +55,13 @@ public class ScholarController {
             scholars.add(dto);
         }
 
+        String currentUser = null;
+        if (auth != null && !auth.getName().equals("anonymousUser")) {
+            currentUser = auth.getName();
+        }
+
         model.addAttribute("scholarList", scholars);
+        model.addAttribute("currentUser", currentUser);
 
         return "scholar";
     }
