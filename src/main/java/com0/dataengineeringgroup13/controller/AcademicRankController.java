@@ -1,9 +1,6 @@
 package com0.dataengineeringgroup13.controller;
 
-import com.github.javafaker.Faker;
-import com.orientechnologies.orient.jdbc.OrientJdbcConnection;
 import com0.dataengineeringgroup13.dto.AcademicRankDto;
-import com0.dataengineeringgroup13.dto.ArticleDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,7 +90,7 @@ public class AcademicRankController {
         return "generate-result";
     }
 
-    @GetMapping("/truncate-academic-rank")
+    @GetMapping("/academic-rank/academic-rank")
     public String truncateAcademicRank(Model model) throws Exception {
 
         Properties info = new Properties();

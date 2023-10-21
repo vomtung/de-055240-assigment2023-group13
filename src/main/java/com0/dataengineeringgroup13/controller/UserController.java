@@ -71,6 +71,10 @@ public class UserController {
         Connection conn = DriverManager.getConnection(connectionUrl, info);
         Statement stmt = conn.createStatement();
 
+        stmt.executeQuery("INSERT INTO    USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
+                "            VALUES("+ 0+",'admin', 'admin','admin@mail.kom' ,'admin')"
+        );
+
         for (int i = 10; i < 20; i++) {
 
             Faker faker1 = new Faker();
@@ -84,15 +88,10 @@ public class UserController {
             username = username.replaceAll("[^A-Za-z0-9]","");
             email = email.replaceAll("[^A-Za-z0-9]","");
 
-            System.out.println("generateuser-firstName:" + firstName);
-            System.out.println("generateuser-lastName:" + lastName);
-
-
-            ResultSet rs = stmt.executeQuery("INSERT INTO    USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
+            stmt.executeQuery("INSERT INTO  USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
                     "            VALUES("+ i+",'"+username+"', '"+firstName+"','"+email+"' ,'"+lastName+"')"
             );
-            /*INSERT INTO    Employee(name, surname, gender)
-            VALUES('Jay', 'Miner', 'M')*/
+
         }
 
         return "generate-result";
