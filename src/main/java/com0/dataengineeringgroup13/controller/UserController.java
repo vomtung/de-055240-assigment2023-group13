@@ -4,6 +4,7 @@ import com.github.javafaker.Faker;
 import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.dto.ArticleDto;
 import com0.dataengineeringgroup13.dto.ScholarDto;
+import com0.dataengineeringgroup13.dto.UserDetailDto;
 import com0.dataengineeringgroup13.dto.UserDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -59,6 +60,35 @@ public class UserController {
         model.addAttribute("pageNumber", pageNumber);
 
         return "user";
+    }
+
+    @GetMapping("/user/detail")
+    public String userDetail(@RequestParam(required = false) Integer userId, Model model) throws Exception {
+
+        Properties info = new Properties();
+        info.put("user", username);
+        info.put("password", password);
+
+        Connection conn = DriverManager.getConnection(connectionUrl, info);
+
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  USER  WHERE USR_ID =" + userId);
+
+        UserDetailDto userDetailDto = null;
+        while (rs.next()) {
+            userDetailDto = new UserDetailDto();
+            userDetailDto.setUserId(rs.getInt("USR_ID"));
+            userDetailDto.setUserName(rs.getString("USR_NAME"));
+            userDetailDto.setFirstName(rs.getString("FIRST_NAME"));
+            userDetailDto.setLastName(rs.getString("LAST_NAME"));
+            userDetailDto.setEmail(rs.getString("EMAIL"));
+
+            break;
+        }
+
+        model.addAttribute("userDetail", userDetailDto);
+
+        return "user-detail";
     }
 
     @GetMapping("/user/generate-user")

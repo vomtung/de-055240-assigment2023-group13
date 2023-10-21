@@ -52,27 +52,53 @@
     </ul>
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <!-- End side bar-->
-    <table>
-        <thead>
-        <tr>
-            <th> FIRST NAME </th>
-            <th> LAST NAME </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${userList.empty}">
-            <td colspan="2"> No Data Available </td>
-        </tr>
-        <tr th:each="user : ${userList}">
-            <td><span th:text="${user.firstName}">FIRST NAME</span></td>
-            <td><span th:text="${user.lastName}"> LAST NAME </span>
-                <a th:href="@{'/user/detail' (userId=${user.userId})}">detail</a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-    <div style=" position:fixed;bottom:0;">
-        <a class="waves-effect waves-light btn" th:href="@{'/user' (pageNumber=${pageNumber - 1})}"><i class="material-icons left">navigate_before</i>Next</a>
-        <a class="waves-effect waves-light btn" th:href="@{'/user' (pageNumber=${pageNumber + 1})}"><i class="material-icons right">navigate_next</i>Previous</a>
+    <div class="row">
+        <form class="col s12" th:object="${userDetail}">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="user_name" type="text" class="validate" th:field="*{userName}">
+                    <label for="user_name">User Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="first_name" type="text" class="validate" th:field="*{firstName}">
+                    <label for="first_name">First Name</label>
+                </div>
+                <div class="input-field col s6">
+                    <input id="last_name" type="text" class="validate" th:field="*{lastName}">
+                    <label for="last_name">Last Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input disabled value="I am not editable" id="disabled" type="text" class="validate">
+                    <label for="disabled">Disabled</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="password" type="password" class="validate">
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="email" type="email" class="validate">
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12">
+                    This is an inline input field:
+                    <div class="input-field inline">
+                        <input id="email_inline" type="email" class="validate">
+                        <label for="email_inline">Email</label>
+                        <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+
 </html>
