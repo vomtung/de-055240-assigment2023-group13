@@ -20,16 +20,14 @@ public class HomeController {
         ArticleDto article1 = new ArticleDto(1L,"title 123","content23123");
         ArticleDto article2 = new ArticleDto(1L,"title 222","content222222222");
 
-        System.out.println("securoty context holder:" + auth);
-
         String currentUser = null;
         if (auth != null && !auth.getName().equals("anonymousUser")) {
             currentUser = auth.getName();
         }
 
         model.addAttribute("currentUser", currentUser);
-
         model.addAttribute("artiles", List.of(article1, article2));
+
         return "home";
     }
 }

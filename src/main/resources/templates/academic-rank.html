@@ -1,5 +1,5 @@
 
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
     <head>
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
@@ -15,7 +15,14 @@
             <ul id="nav-mobile" class= "right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/scholar">Scholar</a></li>
-                <li><a href="/login">Login</a></li>
+                <li>
+                    <div th:if="${currentUser != null}">
+                        <div th:text=" 'Hi,' + ${currentUser}">Hi, User</div>
+                    </div>
+                    <div th:unless="${currentUser == 'null'}">
+                        <a href="/login">Login</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
