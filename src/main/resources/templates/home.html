@@ -67,12 +67,13 @@
    </ul>
    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
    <!--end side bar-->
-      <p>This is the body of the sample view</p>
    <table>
       <thead>
       <tr>
          <th> Title </th>
-         <th> Content </th>
+         <th style="width:80%"> Content </th>
+         <th> Author </th>
+         <th> User Identifier </th>
       </tr>
       </thead>
       <tbody>
@@ -80,8 +81,10 @@
          <td colspan="2"> No Data Available </td>
       </tr>
       <tr th:each="book : ${artiles}">
-         <td><span th:text="${book.title}"> Title </span></td>
-         <td><span th:text="${book.content}"> Author </span></td>
+         <td><span th:text="${book.subject}"> Suject </span></td>
+         <td style="width: 800px;display:inline-block"><div><span style="width: 800px;word-wrap: break-word" th:text="${book.content}"> Content </span></div></td>
+         <td><span th:text="${book.author}"> Author </span></td>
+         <td><span th:text="${book.userIdentifier}"> User Identifier </span></td>
       </tr>
       </tbody>
    </table>

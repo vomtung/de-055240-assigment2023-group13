@@ -64,7 +64,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 mx-auto">
-                    <h2>Upload scientific paper list</h2>
+                    <h3>Upload scientific paper list</h3>
                     <p th:text="${message}" th:if="${message ne null}" class="alert alert-primary"></p>
                     <form method="post" th:action="@{/setting/upload-user-excel-file}" enctype="multipart/form-data">
                         <input type="file" name="file" accept=".xls,.xlsx" />

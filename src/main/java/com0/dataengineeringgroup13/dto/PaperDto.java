@@ -1,20 +1,30 @@
 package com0.dataengineeringgroup13.dto;
 
-public class ScientificPaper {
+import java.io.Serializable;
 
+public class PaperDto implements Serializable {
+    private Long paperId;
     private String subject;
     private String content;
     private String author;
+    private String userIdentifier;
 
-    private String excelRowNum;
-
-    public ScientificPaper() {
+    public PaperDto() {
     }
 
-    public ScientificPaper(String subject, String content, String author) {
+    public PaperDto(Long paperId, String subject, String content, String userIdentifier) {
+        this.paperId = paperId;
         this.subject = subject;
         this.content = content;
-        this.author = author;
+        this.userIdentifier = userIdentifier;
+    }
+
+    public Long getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Long paperId) {
+        this.paperId = paperId;
     }
 
     public String getSubject() {
@@ -41,11 +51,11 @@ public class ScientificPaper {
         this.author = author;
     }
 
-    public String getExcelRowNum() {
-        return excelRowNum;
+    public String getUserIdentifier() {
+        return userIdentifier;
     }
 
-    public void setExcelRowNum(String excelRowNum) {
-        this.excelRowNum = excelRowNum;
+    public void setUserIdentifier(String userIdentifier) {
+        this.userIdentifier = userIdentifier;
     }
 }
