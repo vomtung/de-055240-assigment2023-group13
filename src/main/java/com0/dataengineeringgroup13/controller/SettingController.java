@@ -1,18 +1,27 @@
 package com0.dataengineeringgroup13.controller;
 
 
+import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.dto.ScholarDto;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.multipart.MultipartFile;
 
+import org.apache.poi.ss.usermodel.CellType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -29,7 +38,7 @@ public class SettingController {
     private String password;
 
     @GetMapping("/setting")
-    public String index(Model model) throws Exception{
+    public String index(Model model) throws Exception {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -66,5 +75,42 @@ public class SettingController {
         model.addAttribute("currentUser", currentUser);
 
         return "setting";
+    }
+
+    @PostMapping("setting/upload-user-excel-file")
+    public String uploadExcelFile(Model model, MultipartFile file) throws Exception {
+
+        XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
+        Sheet firstSheet = workbook.getSheetAt(0);
+        Iterator<Row> iterator = firstSheet.iterator();
+
+        while (iterator.hasNext()) {
+
+            Row row = iterator.next();
+
+            for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
+
+                Cell cell = row.getCell(i);
+                if (cell != null) {
+                    switch (cell.getCellType()) {
+                        case STRING:
+                            System.out.println("cell:" + cell.getStringCellValue());
+                            break;
+                        case BOOLEAN:
+                            System.out.println(cell.getBooleanCellValue());
+                            break;
+                        case NUMERIC:
+                            System.out.println(cell.getNumericCellValue());
+                            break;
+                    }
+                }
+                System.out.print(" - ");
+
+            }
+
+            workbook.close();
+
+        }
+        return "success-result";
     }
 }

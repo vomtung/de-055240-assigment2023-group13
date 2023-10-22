@@ -6,4 +6,7 @@ public class AppContanst {
 
     public static final Integer DEFAULT_USER_NUMBER_GENERATE = 20;
 
+    public static final Integer EXCEL_COLUMN_SIZE = 2;
+
+
 }
