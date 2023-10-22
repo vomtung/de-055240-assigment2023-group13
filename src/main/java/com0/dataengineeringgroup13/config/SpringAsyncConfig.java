@@ -14,12 +14,12 @@ import static com0.dataengineeringgroup13.common.AppContanst.EXCEL_IMPORT_NUMBER
 public class SpringAsyncConfig {
 
     @Bean(name = "threadPoolExecutor")
-    public Executor taskExecutor() {
+    public Executor getThreadPoolExecutor() {
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
         executor.setCorePoolSize(EXCEL_IMPORT_NUMBER_OF_THREAD);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(25);
-        executor.setThreadNamePrefix("GithubLookup-");
+        executor.setThreadNamePrefix("ExcelAsync-");
         executor.initialize();
         return executor;
     }

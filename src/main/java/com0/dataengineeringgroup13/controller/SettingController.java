@@ -1,14 +1,8 @@
 package com0.dataengineeringgroup13.controller;
 
 
-import com0.dataengineeringgroup13.common.AppContanst;
-import com0.dataengineeringgroup13.contants.PaperColumnIndex;
 import com0.dataengineeringgroup13.dto.ScholarDto;
-import com0.dataengineeringgroup13.dto.ScientificPaper;
-import com0.dataengineeringgroup13.service.ImportExcelAsyncService;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
+import com0.dataengineeringgroup13.service.ImportExcelService;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,7 +18,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 
@@ -41,7 +34,7 @@ public class SettingController {
     private String password;
 
     @Autowired
-    private ImportExcelAsyncService importExcelAsyncService;
+    private ImportExcelService importExcelAsyncService;
 
     @GetMapping("/setting")
     public String index(Model model) throws Exception {

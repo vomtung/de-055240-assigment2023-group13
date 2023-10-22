@@ -4,13 +4,13 @@ import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.contants.PaperColumnIndex;
 import com0.dataengineeringgroup13.dto.ScientificPaper;
 import com0.dataengineeringgroup13.service.ImportExcelAsyncService;
-import com0.dataengineeringgroup13.service.ImportExcelService;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import com0.dataengineeringgroup13.service.ImportExcelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
@@ -24,33 +24,33 @@ import java.util.concurrent.CompletableFuture;
 import static com0.dataengineeringgroup13.common.AppContanst.EXCEL_IMPORT_NUMBER_OF_THREAD;
 
 @Service
-public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
+public class ImportExcelServiceImpl implements ImportExcelService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ImportExcelAsyncServiceImpl.class);
+    private static final Logger logger = LoggerFactory.getLogger(ImportExcelServiceImpl.class);
 
     @Autowired
     private Connection dataConnection;
 
-    @Async("threadPoolExecutor")
-    public CompletableFuture<Boolean> conductAsynImportExcelFile (XSSFWorkbook workbook, Integer rowFactor) {
+    @Autowired
+    private ImportExcelAsyncService importExcelAsyncService;
 
+    public void importExcelFileAsync(XSSFWorkbook workbook) {
 
-        Sheet firstSheet = workbook.getSheetAt(0);
-        Iterator<Row> iterator = firstSheet.iterator();
-        List<ScientificPaper> scientificPapers = new ArrayList<>();
+        long start = System.currentTimeMillis();
 
-        while (iterator.hasNext()) {
+        // Kick of multiple, asynchronous lookups
+        CompletableFuture<Boolean> page1 = importExcelAsyncService.conductAsynImportExcelFile(workbook,0);
+        CompletableFuture<Boolean> page2 = importExcelAsyncService.conductAsynImportExcelFile(workbook,1);
+        CompletableFuture<Boolean> page3 = importExcelAsyncService.conductAsynImportExcelFile(workbook,2);
+        CompletableFuture<Boolean> page4 = importExcelAsyncService.conductAsynImportExcelFile(workbook,3);
+        CompletableFuture<Boolean> page5 = importExcelAsyncService.conductAsynImportExcelFile(workbook,4);
 
-            Row row = iterator.next();
-            int rowNum = row.getRowNum();
+        // Wait until they are all done
+        CompletableFuture.allOf(page1,page2,page3,page4,page5).join();
 
-            if (rowNum > AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX && (rowFactor.equals(rowNum%EXCEL_IMPORT_NUMBER_OF_THREAD))) {
-                readRow(scientificPapers, row);
-            }
+        // Print results, including elapsed time
+        logger.info("Elapsed time: " + (System.currentTimeMillis() - start));
 
-        }
-
-        return CompletableFuture.completedFuture(Boolean.TRUE);
     }
 
     private void readRow(List<ScientificPaper> scientificPapers, Row row) {
@@ -71,7 +71,6 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
                 switch (cell.getCellType()) {
                     case STRING:
                         System.out.println(" cell:" + cell.getStringCellValue());
-                        logger.info(" cell:" + cell.getStringCellValue());
                         String value = cell.getStringCellValue();
 
                         if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
