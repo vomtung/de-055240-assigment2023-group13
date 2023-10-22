@@ -87,30 +87,38 @@ public class SettingController {
         while (iterator.hasNext()) {
 
             Row row = iterator.next();
+            int rowNum = row.getRowNum();
 
-            for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
-
-                Cell cell = row.getCell(i);
-                if (cell != null) {
-                    switch (cell.getCellType()) {
-                        case STRING:
-                            System.out.println("cell:" + cell.getStringCellValue());
-                            break;
-                        case BOOLEAN:
-                            System.out.println(cell.getBooleanCellValue());
-                            break;
-                        case NUMERIC:
-                            System.out.println(cell.getNumericCellValue());
-                            break;
-                    }
-                }
-                System.out.print(" - ");
-
+            if (rowNum > AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX) {
+                readRow(row);
             }
 
             workbook.close();
 
         }
         return "success-result";
+    }
+
+    private void readRow(Row row) {
+
+        for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
+
+            Cell cell = row.getCell(i);
+            if (cell != null) {
+                switch (cell.getCellType()) {
+                    case STRING:
+                        System.out.println("cell:" + cell.getStringCellValue());
+                        break;
+                    case BOOLEAN:
+                        System.out.println(cell.getBooleanCellValue());
+                        break;
+                    case NUMERIC:
+                        System.out.println(cell.getNumericCellValue());
+                        break;
+                }
+            }
+            System.out.print(" - ");
+
+        }
     }
 }
