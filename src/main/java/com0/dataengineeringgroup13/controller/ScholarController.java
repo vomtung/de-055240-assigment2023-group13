@@ -1,7 +1,6 @@
 package com0.dataengineeringgroup13.controller;
 
 
-import com0.dataengineeringgroup13.dto.AcademicRankDto;
 import com0.dataengineeringgroup13.dto.ScholarDto;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
