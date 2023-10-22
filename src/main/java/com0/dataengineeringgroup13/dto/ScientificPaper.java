@@ -6,13 +6,16 @@ public class ScientificPaper {
     private String content;
     private String author;
 
+    private String excelRowNum;
+
     public ScientificPaper() {
     }
 
-    public ScientificPaper(String subject, String content, String author) {
+    public ScientificPaper(String subject, String content, String author, String excelRowNum) {
         this.subject = subject;
         this.content = content;
         this.author = author;
+        this.excelRowNum = excelRowNum;
     }
 
     public String getSubject() {
@@ -37,5 +40,13 @@ public class ScientificPaper {
 
     public void setAuthor(String author) {
         this.author = author;
+    }
+
+    public String getExcelRowNum() {
+        return excelRowNum;
+    }
+
+    public void setExcelRowNum(String excelRowNum) {
+        this.excelRowNum = excelRowNum;
     }
 }

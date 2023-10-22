@@ -4,7 +4,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.util.concurrent.CompletableFuture;
 
-public interface ImportExcelAsyncService {
+public interface ImportExcelService {
 
-    CompletableFuture<Boolean> conductAsynImportExcelFile(XSSFWorkbook workbook, Integer rowFactor);
+    void importExcelFileAsync(XSSFWorkbook workbook);
+
 }
