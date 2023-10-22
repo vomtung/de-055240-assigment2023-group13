@@ -10,5 +10,6 @@ public class AppContanst {
 
     public static final Integer EXCEL_USER_LIST_HEADER_ROW_INDEX = 2;
 
+    public static final Integer EXCEL_IMPORT_NUMBER_OF_THREAD = 5;
 
 }

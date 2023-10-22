@@ -5,10 +5,12 @@ import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.contants.PaperColumnIndex;
 import com0.dataengineeringgroup13.dto.ScholarDto;
 import com0.dataengineeringgroup13.dto.ScientificPaper;
+import com0.dataengineeringgroup13.service.ImportExcelAsyncService;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -37,6 +39,9 @@ public class SettingController {
 
     @Value("${orientdb.password}")
     private String password;
+
+    @Autowired
+    private ImportExcelAsyncService importExcelAsyncService;
 
     @GetMapping("/setting")
     public String index(Model model) throws Exception {
@@ -82,62 +87,13 @@ public class SettingController {
     public String uploadExcelFile(Model model, MultipartFile file) throws Exception {
 
         XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
-        Sheet firstSheet = workbook.getSheetAt(0);
-        Iterator<Row> iterator = firstSheet.iterator();
-        List<ScientificPaper> scientificPapers = new ArrayList<>();
 
-        while (iterator.hasNext()) {
+        importExcelAsyncService.importExcelFileAsync(workbook);
 
-            Row row = iterator.next();
-            int rowNum = row.getRowNum();
+        workbook.close();
 
-            if (rowNum > AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX) {
-                readRow(scientificPapers, row);
-            }
-
-            workbook.close();
-
-        }
         return "success-result";
     }
 
-    private void readRow(List<ScientificPaper> scientificPapers, Row row) {
 
-        ScientificPaper scientificPaper = new ScientificPaper();
-        readCell(scientificPaper, row);
-        scientificPapers.add(scientificPaper);
-
-    }
-
-    private void readCell(ScientificPaper scientificPaper, Row row) {
-
-        for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
-
-            Cell cell = row.getCell(i);
-
-            if (cell != null) {
-                switch (cell.getCellType()) {
-                    case STRING:
-                        System.out.println("cell:" + cell.getStringCellValue());
-                        String value = cell.getStringCellValue();
-
-                        if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
-
-                            scientificPaper.setSubject(value);
-                        }
-
-
-                        break;
-                    case BOOLEAN:
-                        System.out.println(cell.getBooleanCellValue());
-                        break;
-                    case NUMERIC:
-                        System.out.println(cell.getNumericCellValue());
-                        break;
-                }
-            }
-            System.out.print(" - ");
-
-        }
-    }
 }
