@@ -2,7 +2,9 @@ package com0.dataengineeringgroup13.controller;
 
 
 import com0.dataengineeringgroup13.common.AppContanst;
+import com0.dataengineeringgroup13.contants.PaperColumnIndex;
 import com0.dataengineeringgroup13.dto.ScholarDto;
+import com0.dataengineeringgroup13.dto.ScientificPaper;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -16,7 +18,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 
-import org.apache.poi.ss.usermodel.CellType;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -83,34 +84,60 @@ public class SettingController {
         XSSFWorkbook workbook = new XSSFWorkbook(file.getInputStream());
         Sheet firstSheet = workbook.getSheetAt(0);
         Iterator<Row> iterator = firstSheet.iterator();
+        List<ScientificPaper> scientificPapers = new ArrayList<>();
 
         while (iterator.hasNext()) {
 
             Row row = iterator.next();
+            int rowNum = row.getRowNum();
 
-            for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
-
-                Cell cell = row.getCell(i);
-                if (cell != null) {
-                    switch (cell.getCellType()) {
-                        case STRING:
-                            System.out.println("cell:" + cell.getStringCellValue());
-                            break;
-                        case BOOLEAN:
-                            System.out.println(cell.getBooleanCellValue());
-                            break;
-                        case NUMERIC:
-                            System.out.println(cell.getNumericCellValue());
-                            break;
-                    }
-                }
-                System.out.print(" - ");
-
+            if (rowNum > AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX) {
+                readRow(scientificPapers, row);
             }
 
             workbook.close();
 
         }
         return "success-result";
+    }
+
+    private void readRow(List<ScientificPaper> scientificPapers, Row row) {
+
+        ScientificPaper scientificPaper = new ScientificPaper();
+        readCell(scientificPaper, row);
+        scientificPapers.add(scientificPaper);
+
+    }
+
+    private void readCell(ScientificPaper scientificPaper, Row row) {
+
+        for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
+
+            Cell cell = row.getCell(i);
+
+            if (cell != null) {
+                switch (cell.getCellType()) {
+                    case STRING:
+                        System.out.println("cell:" + cell.getStringCellValue());
+                        String value = cell.getStringCellValue();
+
+                        if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
+
+                            scientificPaper.setSubject(value);
+                        }
+
+
+                        break;
+                    case BOOLEAN:
+                        System.out.println(cell.getBooleanCellValue());
+                        break;
+                    case NUMERIC:
+                        System.out.println(cell.getNumericCellValue());
+                        break;
+                }
+            }
+            System.out.print(" - ");
+
+        }
     }
 }
