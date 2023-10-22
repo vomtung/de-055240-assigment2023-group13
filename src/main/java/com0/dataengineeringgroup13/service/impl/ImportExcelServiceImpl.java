@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -34,7 +35,7 @@ public class ImportExcelServiceImpl implements ImportExcelService {
     @Autowired
     private ImportExcelAsyncService importExcelAsyncService;
 
-    public void importExcelFileAsync(XSSFWorkbook workbook) {
+    public void importExcelFileAsync(XSSFWorkbook workbook) throws Exception {
 
         long start = System.currentTimeMillis();
 

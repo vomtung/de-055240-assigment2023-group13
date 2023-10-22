@@ -19,7 +19,7 @@ public class SpringAsyncConfig {
         executor.setCorePoolSize(EXCEL_IMPORT_NUMBER_OF_THREAD);
         executor.setMaxPoolSize(10);
         executor.setQueueCapacity(25);
-        executor.setThreadNamePrefix("ExcelAsync-");
+        executor.setThreadNamePrefix("Excel-Import-Async-Thread-");
         executor.initialize();
         return executor;
     }

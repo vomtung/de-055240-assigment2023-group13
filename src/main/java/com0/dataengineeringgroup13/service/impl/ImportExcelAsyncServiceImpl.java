@@ -12,13 +12,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 
 import static com0.dataengineeringgroup13.common.AppContanst.EXCEL_IMPORT_NUMBER_OF_THREAD;
@@ -28,11 +33,17 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
 
     private static final Logger logger = LoggerFactory.getLogger(ImportExcelAsyncServiceImpl.class);
 
-    @Autowired
-    private Connection dataConnection;
+    @Value("${orientdb.connection.url}")
+    private String connectionUrl;
+
+    @Value("${orientdb.username}")
+    private String username;
+
+    @Value("${orientdb.password}")
+    private String password;
 
     @Async("threadPoolExecutor")
-    public CompletableFuture<Boolean> conductAsynImportExcelFile (XSSFWorkbook workbook, Integer rowFactor) {
+    public CompletableFuture<Boolean> conductAsynImportExcelFile (XSSFWorkbook workbook, Integer rowFactor) throws SQLException {
 
 
         Sheet firstSheet = workbook.getSheetAt(0);
@@ -53,11 +64,22 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
         return CompletableFuture.completedFuture(Boolean.TRUE);
     }
 
-    private void readRow(List<ScientificPaper> scientificPapers, Row row) {
+    private void readRow(List<ScientificPaper> scientificPapers, Row row) throws SQLException {
 
         ScientificPaper scientificPaper = new ScientificPaper();
         readCell(scientificPaper, row);
         scientificPapers.add(scientificPaper);
+
+        Properties info = new Properties();
+        info.put("user", username);
+        info.put("password", password);
+
+        Connection conn = DriverManager.getConnection(connectionUrl, info);
+
+        Statement stmt = conn.createStatement();
+
+        stmt.executeQuery("INSERT INTO  PAPER(SUBJECT, CONTENT, AUTHOR, USER_IDENTIFIER) " +
+                "            VALUES('"+scientificPaper.getSubject()+"', '"+scientificPaper.getContent()+"','"+scientificPaper.getAuthor()+"',''"+")");
 
     }
 
@@ -70,9 +92,9 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
             if (cell != null) {
                 switch (cell.getCellType()) {
                     case STRING:
-                        System.out.println(" cell:" + cell.getStringCellValue());
                         logger.info(" cell:" + cell.getStringCellValue());
                         String value = cell.getStringCellValue();
+                        value = value.replaceAll("[^A-Za-z0-9]","");
 
                         if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
 

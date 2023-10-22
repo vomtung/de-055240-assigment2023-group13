@@ -2,8 +2,6 @@ package com0.dataengineeringgroup13.controller;
 
 import com.github.javafaker.Faker;
 import com0.dataengineeringgroup13.common.AppContanst;
-import com0.dataengineeringgroup13.dto.ArticleDto;
-import com0.dataengineeringgroup13.dto.ScholarDto;
 import com0.dataengineeringgroup13.dto.UserDetailDto;
 import com0.dataengineeringgroup13.dto.UserDto;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,7 +14,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
-import java.util.Random;
 
 @Controller
 public class UserController {

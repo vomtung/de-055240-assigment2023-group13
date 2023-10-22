@@ -1,13 +1,20 @@
 package com0.dataengineeringgroup13.service.impl;
 
+import com0.dataengineeringgroup13.dto.PaperDto;
 import com0.dataengineeringgroup13.service.ScientificPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
+/**
+ * Paper service
+ *
+ * @author Tung Vo
+ * @since 22.OTC.2023
+ */
 @Service
 public class ScientificPaperServiceImpl implements ScientificPaperService {
 
@@ -18,5 +25,26 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
         Statement stmt = dataConnection.createStatement();
 
         stmt.executeQuery("TRUNCATE CLASS PAPER UNSAFE;");
+    }
+
+    @Override
+    public List<PaperDto> findAll() throws SQLException {
+
+        List<PaperDto> paperDtos = new ArrayList<>();
+
+        Statement stmt = dataConnection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  PAPER  ;");
+
+        while (rs.next()) {
+            PaperDto paperDto = new PaperDto();
+            paperDto.setSubject(rs.getString("SUBJECT"));
+            paperDto.setContent(rs.getString("CONTENT"));
+            paperDto.setAuthor(rs.getString("AUTHOR"));
+            paperDto.setUserIdentifier(rs.getString("USER_IDENTIFIER"));
+
+            paperDtos.add(paperDto);
+        }
+
+        return paperDtos;
     }
 }
