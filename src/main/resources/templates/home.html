@@ -55,7 +55,7 @@
                </div>
             </span>
          </a>
-         <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+         <a href="#email"><span th:text=" ${currentUser != null ? currentUser + '@mail.kom':'anonymous'}" class="white-text email">jdandturk@gmail.com</span></a>
       </div></li>
       <li><a href="/"><i class="material-symbols-outlined">home</i>Home</a>
       <li><a href="/scholar"><i class="material-icons">school</i>Scholar</a></li>

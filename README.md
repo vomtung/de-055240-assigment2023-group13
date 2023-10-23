@@ -14,6 +14,10 @@ https://orientdb.org/docs/3.0.x/gettingstarted/Tutorial-Using-schema-with-graphs
 
 https://orientdb.org/docs/3.1.x/sql/Pagination.html
 
+https://orientdb.com/docs/last/sql/SQL-Query.html
+
+https://orientdb.com/docs/last/sql/SQL-Update.html
+
 go to \orientdb-community-version\bin, run server.bat
 ################################
 <pre>
