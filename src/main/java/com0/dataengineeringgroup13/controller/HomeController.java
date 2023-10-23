@@ -8,6 +8,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -19,7 +20,7 @@ public class HomeController {
     private ScientificPaperService scientificPaperService;
 
     @GetMapping("/")
-    public String index(Model model) throws Exception {
+    public String index(@RequestParam(required = false) Integer pageNumber, Model model) throws Exception {
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
@@ -29,8 +30,13 @@ public class HomeController {
             currentUser = auth.getName();
         }
 
+
         model.addAttribute("currentUser", currentUser);
-        model.addAttribute("artiles", scientificPaperService.findAll());
+        model.addAttribute("pageNumber", pageNumber);
+        if (pageNumber == null || pageNumber < 0) {
+            model.addAttribute("pageNumber", 0);
+            model.addAttribute("artiles", scientificPaperService.findAll(0));
+        }
 
         return "home";
     }

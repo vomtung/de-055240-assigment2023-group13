@@ -9,5 +9,5 @@ public interface ScientificPaperService {
 
     void truncateScientificPaper() throws SQLException;
 
-    List<PaperDto> findAll() throws SQLException;
+    List<PaperDto> findAll(Integer pageNumber) throws SQLException;
 }
