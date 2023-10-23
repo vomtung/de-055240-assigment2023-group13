@@ -27,20 +27,39 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/academic-rank">Academic Rank</a></li>
-                <li><a href="/login">Login</a></li>
+                <li>
+                    <div th:if="${currentUser != null}">
+                        <div th:text=" 'Hi,' + ${currentUser}">Hi, User</div>
+                    </div>
+                    <div th:unless="${currentUser == 'null'}">
+                        <a href="/login">Login</a>
+                    </div>
+                </li>
             </ul>
         </div>
     </nav>
     <!-- Start side bar-->
     <ul id="slide-out" class="sidenav">
-        <li><div class="user-view">
-            <div class="background">
-                <img th:src="@{/images/grass.jpg}" style="width:300px;height:250px;"/>
+        <li>
+            <div class="user-view">
+                <div class="background">
+                    <img th:src="@{/images/grass.jpg}" style="width:300px;height:250px;"/>
+                </div>
+                <a href="#user"></a>
+                <a href="#name">
+                   <span class="white-text name">
+                       <div th:if="${currentUser != null}">
+                             <div th:text=" ${currentUser}">Hi, User</div>
+                       </div>
+                       <div th:unless="${currentUser != null}">
+                          Anonymous
+                       </div>
+                </span>
+                </a>
+                <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+
             </div>
-            <a href="#user"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-        </div></li>
+        </li>
         <li><a href="/"><i class="material-symbols-outlined">home</i>Home</a>
         <li><a href="/scholar"><i class="material-icons">school</i>scholar</a></li>
         <li><a href="/user"><i class="material-icons">account_box</i>user</a></li>
