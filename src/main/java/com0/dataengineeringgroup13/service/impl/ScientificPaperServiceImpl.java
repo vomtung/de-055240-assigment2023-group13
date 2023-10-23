@@ -1,6 +1,7 @@
 package com0.dataengineeringgroup13.service.impl;
 
 import com0.dataengineeringgroup13.common.AppContanst;
+import com0.dataengineeringgroup13.dto.PaperDetailDto;
 import com0.dataengineeringgroup13.dto.PaperDto;
 import com0.dataengineeringgroup13.service.ScientificPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,7 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
 
         while (rs.next()) {
             PaperDto paperDto = new PaperDto();
+            paperDto.setPaperId(rs.getRowId("@rid").toString());
             paperDto.setSubject(rs.getString("SUBJECT"));
             paperDto.setContent(rs.getString("CONTENT"));
             paperDto.setAuthor(rs.getString("AUTHOR"));
@@ -48,5 +50,26 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
         }
 
         return paperDtos;
+    }
+
+    public PaperDetailDto findById(String paperId) throws SQLException {
+
+        Statement stmt = dataConnection.createStatement();
+
+
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  PAPER WHERE @rid = '" + paperId + "';");
+
+        PaperDetailDto paperDto = new PaperDetailDto();
+
+        while (rs.next()) {
+
+            paperDto.setSubject(rs.getString("SUBJECT"));
+            paperDto.setContent(rs.getString("CONTENT"));
+            paperDto.setAuthor(rs.getString("AUTHOR"));
+            paperDto.setUserIdentifier(rs.getString("USER_IDENTIFIER"));
+
+        }
+
+        return paperDto;
     }
 }

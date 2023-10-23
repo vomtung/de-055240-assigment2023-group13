@@ -2,28 +2,34 @@ package com0.dataengineeringgroup13.dto;
 
 import java.io.Serializable;
 
-public class PaperDto implements Serializable {
-    private String paperId;
+/**
+ * Paper detail
+ *
+ * @author Tung Vo
+ * @since 23/Otc/2023
+ */
+public class PaperDetailDto implements Serializable {
+    private Long paperId;
     private String subject;
     private String content;
     private String author;
     private String userIdentifier;
 
-    public PaperDto() {
+    public PaperDetailDto() {
     }
 
-    public PaperDto(String paperId, String subject, String content, String userIdentifier) {
+    public PaperDetailDto(Long paperId, String subject, String content, String userIdentifier) {
         this.paperId = paperId;
         this.subject = subject;
         this.content = content;
         this.userIdentifier = userIdentifier;
     }
 
-    public String getPaperId() {
+    public Long getPaperId() {
         return paperId;
     }
 
-    public void setPaperId(String paperId) {
+    public void setPaperId(Long paperId) {
         this.paperId = paperId;
     }
 
