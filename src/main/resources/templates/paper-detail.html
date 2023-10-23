@@ -53,7 +53,7 @@
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <!-- End side bar-->
     <div class="row">
-        <form class="col s12" th:object="${paperDetail}">
+        <form  th:object="${paperDetail}">
             <div class="row">
                 <div class="input-field col s6">
                     <input placeholder="Placeholder" id="user_name" type="text" class="validate" th:field="*{subject}">
@@ -62,7 +62,7 @@
             </div>
             <div class="row">
                 <div class="input-field col s6">
-                    <input placeholder="Placeholder" id="paper_content" type="text" class="validate" th:field="*{content}">
+                    <textarea placeholder="Placeholder" id="paper_content" style="height:150px" class="validate" th:field="*{content}"></textarea>
                     <label for="paper_content">Content</label>
                 </div>
 
