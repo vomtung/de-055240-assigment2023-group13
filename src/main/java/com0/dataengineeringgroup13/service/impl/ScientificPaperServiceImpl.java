@@ -1,5 +1,6 @@
 package com0.dataengineeringgroup13.service.impl;
 
+import com0.dataengineeringgroup13.common.AppContanst;
 import com0.dataengineeringgroup13.dto.PaperDto;
 import com0.dataengineeringgroup13.service.ScientificPaperService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +29,13 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
     }
 
     @Override
-    public List<PaperDto> findAll() throws SQLException {
+    public List<PaperDto> findAll(Integer pageNumber) throws SQLException {
 
         List<PaperDto> paperDtos = new ArrayList<>();
 
         Statement stmt = dataConnection.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM  PAPER  ;");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  PAPER SKIP " + AppContanst.NUMBER_RECORD_PER_PAGE * pageNumber  +
+                "                 LIMIT "  + AppContanst.NUMBER_RECORD_PER_PAGE);
 
         while (rs.next()) {
             PaperDto paperDto = new PaperDto();
