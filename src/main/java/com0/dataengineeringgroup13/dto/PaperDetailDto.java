@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @since 23/Otc/2023
  */
 public class PaperDetailDto implements Serializable {
-    private Long paperId;
+    private String paperId;
     private String subject;
     private String content;
     private String author;
@@ -18,18 +18,18 @@ public class PaperDetailDto implements Serializable {
     public PaperDetailDto() {
     }
 
-    public PaperDetailDto(Long paperId, String subject, String content, String userIdentifier) {
+    public PaperDetailDto(String paperId, String subject, String content, String userIdentifier) {
         this.paperId = paperId;
         this.subject = subject;
         this.content = content;
         this.userIdentifier = userIdentifier;
     }
 
-    public Long getPaperId() {
+    public String getPaperId() {
         return paperId;
     }
 
-    public void setPaperId(Long paperId) {
+    public void setPaperId(String paperId) {
         this.paperId = paperId;
     }
 

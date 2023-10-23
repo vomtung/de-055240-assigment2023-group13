@@ -23,7 +23,7 @@
 
     <nav>
         <div class="nav-wrapper">
-            <a href="/" class="brand-logo">User</a>
+            <a href="/" class="brand-logo">Paper</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
                 <li><a href="/academic-rank">Academic Rank</a></li>
@@ -72,7 +72,12 @@
     <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     <!-- End side bar-->
     <div class="row">
-        <form  th:object="${paperDetail}">
+        <form th:action="@{/updatePaper}" th:object="${paperDetail}" method="post">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="paper_id" type="hidden" class="validate" th:field="*{paperId}">
+                </div>
+            </div>
             <div class="row">
                 <div class="input-field col s6">
                     <input placeholder="Placeholder" id="user_name" type="text" class="validate" th:field="*{subject}">
@@ -90,6 +95,19 @@
                 <div class="input-field col s6">
                     <input id="author" type="text" class="validate" th:field="*{author}">
                     <label for="author">Author</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="user_identifier" type="text" class="validate" th:field="*{userIdentifier}">
+                    <label for="user_identifier">Author</label>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="input-field col s7">
+                    <button class="btn btn-primary mb-3" type="submit">Update</button>
                 </div>
             </div>
         </form>
