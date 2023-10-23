@@ -1,0 +1,79 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+    <head>
+
+        <!-- Compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+              rel="stylesheet">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+           var elems = document.querySelectorAll('.sidenav');
+           var instances = M.Sidenav.init(elems, {
+              menuWidth: 300, // Default is 300
+              edge: 'left', // Choose the horizontal origin
+              closeOnClick: false, // Closes side-nav on <a> clicks, useful for Angular/Meteor
+              draggable: true // Choose whether you can drag to open on touch screens
+           });
+        });
+    </script>
+    </head>
+
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">User</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/academic-rank">Academic Rank</a></li>
+                <li><a href="/login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+    <!-- Start side bar-->
+    <ul id="slide-out" class="sidenav">
+        <li><div class="user-view">
+            <div class="background">
+                <img th:src="@{/images/grass.jpg}" style="width:300px;height:250px;"/>
+            </div>
+            <a href="#user"></a>
+            <a href="#name"><span class="white-text name">John Doe</span></a>
+            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+        </div></li>
+        <li><a href="/"><i class="material-symbols-outlined">home</i>Home</a>
+        <li><a href="/scholar"><i class="material-icons">school</i>scholar</a></li>
+        <li><a href="/user"><i class="material-icons">account_box</i>user</a></li>
+        <li><a href="/academic-rank"><i class="material-symbols-outlined">star_rate_half</i>Academic Rank</a></li>
+        <li><a href="/university"><i class="material-icons">account_balance</i>University</a></li>
+        <li><div class="divider"></div></li>
+        <li><a class="subheader">Subheader</a></li>
+        <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+    </ul>
+    <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <!-- End side bar-->
+    <div class="row">
+        <form class="col s12" th:object="${paperDetail}">
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="user_name" type="text" class="validate" th:field="*{subject}">
+                    <label for="user_name">User Name</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input placeholder="Placeholder" id="paper_content" type="text" class="validate" th:field="*{content}">
+                    <label for="paper_content">Content</label>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="input-field col s6">
+                    <input id="author" type="text" class="validate" th:field="*{author}">
+                    <label for="author">Author</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+</html>

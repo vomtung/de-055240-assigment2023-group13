@@ -40,6 +40,23 @@ public class PaperController {
         return "home";
     }
 
+    @GetMapping("/paper-detail")
+    public String paperDetail(@RequestParam(required = false) String paperId, Model model) throws Exception {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+        String currentUser = null;
+        if (auth != null && !auth.getName().equals("anonymousUser")) {
+            currentUser = auth.getName();
+        }
+
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("paperDetail", scientificPaperService.findById(paperId));
+
+
+        return "paper-detail";
+    }
+
     @GetMapping("/paper/truncate")
     public String truncateAcademicRank(Model model) throws Exception {
 

@@ -83,7 +83,7 @@
          <td colspan="2"> No Data Available </td>
       </tr>
       <tr th:each="book : ${artiles}">
-         <td><span th:text="${book.subject}"> Suject </span></td>
+         <td><span th:text="${book.subject}"> Suject </span><a th:href="@{'/paper-detail' (paperId=${book.paperId})}">Detail</a></td>
          <td style="width: 800px;display:inline-block"><div><span style="width: 800px;word-wrap: break-word" th:text="${book.content}"> Content </span></div></td>
          <td><span th:text="${book.author}"> Author </span></td>
          <td><span th:text="${book.userIdentifier}"> User Identifier </span></td>
