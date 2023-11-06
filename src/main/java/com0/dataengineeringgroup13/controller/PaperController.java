@@ -77,6 +77,10 @@ public class PaperController {
             currentUser = auth.getName();
         }
 
+        String content = paperDetailDto.getContent();
+        content = content.replaceAll("[^a-zA-Z0-9 ]+","");
+        paperDetailDto.setContent(content);
+
         scientificPaperService.updatePaper(paperDetailDto);
 
 
