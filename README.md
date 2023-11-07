@@ -18,6 +18,12 @@ https://orientdb.com/docs/last/sql/SQL-Query.html
 
 https://orientdb.com/docs/last/sql/SQL-Update.html
 
+https://en.wikipedia.org/wiki/Academic_degree
+
+https://en.wikipedia.org/wiki/List_of_tagged_degrees
+
+https://en.wikipedia.org/wiki/Academic_ranks_in_the_United_States
+
 go to \orientdb-community-version\bin, run server.bat
 ################################
 <pre>

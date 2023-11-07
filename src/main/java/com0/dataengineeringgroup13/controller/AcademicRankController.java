@@ -61,7 +61,7 @@ public class AcademicRankController {
     }
 
     @GetMapping("/generate-rank")
-    public String generateuser(Model model) throws Exception {
+    public String generateRank(Model model) throws Exception {
 
         Properties info = new Properties();
         info.put("user", username);
@@ -75,27 +75,59 @@ public class AcademicRankController {
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 2 + ",'Assistant Professor', 'Asst. Prof')"
+                "            VALUES(" + 2 + ",'Doctor of Arts', 'DA')"
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 3 + ",'Lecturer', 'Lect')"
+                "            VALUES(" + 3 + ",'Doctor of Business Administration', 'DBA')"
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 4 + ",'Instructor', 'Inst')"
+                "            VALUES(" + 4 + ",'Doctor of Canon Law', 'JCD')"
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 5 + ",'Research Professor', 'Res. Prof')"
+                "            VALUES(" + 5 + ",'Doctor of Civil Law', 'DCL')"
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 6 + ",'Adjunct Professor', 'Adj. Prof')"
+                "            VALUES(" + 6 + ",'Doctor of Education', 'EdD')"
         );
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
-                "            VALUES(" + 7 + ",'Visiting Professor', 'Vis. Prof')"
+                "            VALUES(" + 7 + ",'Doctor of Medicine', 'MD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 8 + ",'Doctor of Psychology', 'PsyD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 9 + ",'Doctor of Science', 'DSC')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 10 + ",'Assistant Professor', 'Asst. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 11 + ",'Lecturer', 'Lect')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 12 + ",'Instructor', 'Inst')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 13 + ",'Research Professor', 'Res. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 14 + ",'Adjunct Professor', 'Adj. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 15 + ",'Visiting Professor', 'Vis. Prof')"
         );
 
         return "generate-result";
