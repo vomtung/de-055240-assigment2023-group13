@@ -2,6 +2,8 @@ package com0.dataengineeringgroup13.controller;
 
 
 import com0.dataengineeringgroup13.dto.ScholarDto;
+import com0.dataengineeringgroup13.dto.UniversityDto;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,31 +43,36 @@ public class UniversityController {
         Connection conn = DriverManager.getConnection(connectionUrl, info);
 
         Statement stmt = conn.createStatement();
-        List<ScholarDto> scholars = new ArrayList<ScholarDto>();
+        List<UniversityDto> universities = new ArrayList<UniversityDto>();
+
+        //Dto: jv transfer object
 
         //TODO
         //Create university vertex
         //select data similar example bellow
-        /*ResultSet rs = stmt.executeQuery("SELECT * FROM ( SELECT EXPAND( OUT('SCHOLAR_USER') ) FROM SCHOLAR)"
-                );
-
-
+        ResultSet rs = stmt.executeQuery("SELECT *FROM UNIVERSITY");
+        
         while (rs.next()) {
-            ScholarDto dto = new ScholarDto();
-            dto.setUserId(rs.getLong("USR_ID"));
-            dto.setFirstName(rs.getString("FIRST_NAME"));
-            dto.setLastName(rs.getString("LAST_NAME"));
-            scholars.add(dto);
-        }*/
+            UniversityDto dto = new UniversityDto();
+            // dto.setUniversityname(("UNIVERSITY_NAME"));
+            // dto.setNation(("ABC"));
+            dto.setUniversityname(rs.getString("UNIVERSITY_NAME"));
+            dto.setNation(rs.getString("NATION"));
+            //dto.setLastName(rs.getString("LAST_NAME"));
+            universities.add(dto);
+        }
+
 
         String currentUser = null;
         if (auth != null && !auth.getName().equals("anonymousUser")) {
             currentUser = auth.getName();
         }
 
-        model.addAttribute("scholarList", scholars);
+        model.addAttribute("universityList", universities);
         model.addAttribute("currentUser", currentUser);
 
         return "university";
     }
 }
+// Nation of university
+// address of user (Province, district, street)

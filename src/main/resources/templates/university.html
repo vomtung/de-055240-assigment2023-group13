@@ -64,16 +64,18 @@
         <tr>
             <th> University </th>
             <th> Nation </th>
+            
         </tr>
         </thead>
         <tbody>
-        <tr th:if="${scholarList.empty}">
+        <tr th:if="${universityList.empty}">
             <td colspan="2"> No Data Available </td>
         </tr>
-        <tr th:each="scholar : ${scholarList}">
-            <td><span th:text="${scholar.firstName}">FIRST NAME</span></td>
-            <td><span th:text="${scholar.lastName}"> LAST NAME </span></td>
+        <tr th:each="university : ${universityList}">
+            <td><span th:text="${university.universityname}">FIRST NAME</span></td>
+            <td><span th:text="${university.nation}">FIRST NAME</span></td>
         </tr>
+
         </tbody>
     </table>
 </html>
