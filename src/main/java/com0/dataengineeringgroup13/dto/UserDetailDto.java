@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 public class UserDetailDto implements Serializable {
 
-    private Integer userId;
+    private String userId;
 
     private String userName;
 
@@ -20,11 +20,11 @@ public class UserDetailDto implements Serializable {
 
     private String email;
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
