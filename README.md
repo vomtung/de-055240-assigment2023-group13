@@ -18,6 +18,8 @@ https://orientdb.com/docs/last/sql/SQL-Query.html
 
 https://orientdb.com/docs/last/sql/SQL-Update.html
 
+https://orientdb.com/docs/last/sql/SQL-Insert.html
+
 https://en.wikipedia.org/wiki/Academic_degree
 
 https://en.wikipedia.org/wiki/List_of_tagged_degrees
@@ -119,5 +121,7 @@ DELETE vertex FROM user where usr_id > 0;
 TRUNCATE CLASS ACADEMIC_RANK UNSAFE;
 
 TRUNCATE CLASS USER UNSAFE;
+
+INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('Harvard University', 'USA');
 
 </pre>
