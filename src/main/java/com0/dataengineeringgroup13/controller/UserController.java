@@ -2,15 +2,23 @@ package com0.dataengineeringgroup13.controller;
 
 import com.github.javafaker.Faker;
 import com0.dataengineeringgroup13.common.AppContanst;
+import com0.dataengineeringgroup13.dto.PaperDetailDto;
 import com0.dataengineeringgroup13.dto.UserDetailDto;
 import com0.dataengineeringgroup13.dto.UserDto;
+import com0.dataengineeringgroup13.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.URLEncoder;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +30,9 @@ public class UserController {
 
     @Autowired
     private Connection dataConnection;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/user")
     public String index(@RequestParam(required = false) Integer pageNumber, Model model) throws Exception {
@@ -50,7 +61,7 @@ public class UserController {
     }
 
     @GetMapping("/user/detail")
-    public String userDetail(@RequestParam(required = false) Integer userId, Model model) throws Exception {
+    public String userDetail(@RequestParam(required = false) String userId, Model model) throws Exception {
 
         Statement stmt = dataConnection.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM  USER  WHERE USR_ID =" + userId);
@@ -58,7 +69,7 @@ public class UserController {
         UserDetailDto userDetailDto = null;
         while (rs.next()) {
             userDetailDto = new UserDetailDto();
-            userDetailDto.setUserId(rs.getInt("USR_ID"));
+            userDetailDto.setUserId(rs.getString("USR_ID"));
             userDetailDto.setUserName(rs.getString("USR_NAME"));
             userDetailDto.setFirstName(rs.getString("FIRST_NAME"));
             userDetailDto.setLastName(rs.getString("LAST_NAME"));
@@ -107,6 +118,28 @@ public class UserController {
         }
 
         return "generate-result";
+    }
+
+    @PostMapping("/user/update-user")
+    public String updateUser(@ModelAttribute("userDetail") UserDetailDto userDetail, ModelMap modelMap) throws Exception {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+
+
+        String currentUser = null;
+        if (auth != null && !auth.getName().equals("anonymousUser")) {
+            currentUser = auth.getName();
+        }
+
+        userService.updateUser(userDetail);
+
+
+        //model.addAttribute("currentUser", currentUser);
+        //model.addAttribute("paperDetail", scientificPaperService.findById(paperId));
+
+
+        return "redirect:/user/detail?userId=" + URLEncoder.encode(userDetail.getUserId().toString());
     }
 
     @GetMapping("/user/truncate")
