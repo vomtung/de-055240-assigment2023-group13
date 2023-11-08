@@ -81,7 +81,7 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
                         "CONTENT =  '"+ paperDetailDto.getContent() +"'," +
                         "AUTHOR =  '"+ paperDetailDto.getAuthor() +"'," +
                         "USER_IDENTIFIER =  '"+ paperDetailDto.getUserIdentifier() +"'" +
-                "UPSERT WHERE @rid = "+ paperDetailDto.getPaperId());
+                "  UPSERT WHERE @rid = "+ paperDetailDto.getPaperId());
 
     }
 }
