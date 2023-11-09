@@ -26,7 +26,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateUser(UserDetailDto userDetailDto) throws SQLException {
 
-        System.out.println("===updateUser(UserDetailDto userDetailDto)="+userDetailDto.getUserId());
 
         Statement stmt = dataConnection.createStatement();
         ResultSet rs = stmt.executeQuery("UPDATE USER SET FIRST_NAME =  '"+ userDetailDto.getFirstName() +"'," +
