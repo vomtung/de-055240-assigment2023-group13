@@ -26,6 +26,12 @@ https://en.wikipedia.org/wiki/List_of_tagged_degrees
 
 https://en.wikipedia.org/wiki/Academic_ranks_in_the_United_States
 
+https://orientdb.com/docs/2.2.x/ETL-Introduction.html
+
+https://orientdb.com/docs/2.2.x/Extractor.html
+
+https://orientdb.com/docs/2.2.x/Transformer.html
+
 go to \orientdb-community-version\bin, run server.bat
 ################################
 <pre>
