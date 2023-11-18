@@ -13,6 +13,8 @@ public interface ScientificPaperService {
 
     List<PaperDto> findAll(Integer pageNumber) throws SQLException;
 
+    List<PaperDto> findByContent(String content) throws SQLException;
+
     PaperDetailDto findById(String paperId) throws SQLException;
 
     void updatePaper(PaperDetailDto paperDetailDto) throws SQLException;
