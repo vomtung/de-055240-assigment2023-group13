@@ -157,4 +157,6 @@ INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('University of Chicago'
 INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('University of California Berkeley', 'USA');
 
 SELECT FROM Profile WHERE ANY() LIKE '%danger%'
+
+connect  remote:localhost/de_assigment_group13  root 123456
 </pre>
