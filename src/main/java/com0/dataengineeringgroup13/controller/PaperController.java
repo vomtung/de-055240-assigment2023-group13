@@ -78,7 +78,7 @@ public class PaperController {
         }
 
         String content = paperDetailDto.getContent();
-        content = content.replaceAll("[^a-zA-Z0-9 ]+","");
+        content = content.replaceAll("[^\\dA-Za-z\\s]","");
         paperDetailDto.setContent(content);
 
         scientificPaperService.updatePaper(paperDetailDto);
