@@ -91,6 +91,28 @@ public class PaperController {
         return "redirect:/paper-detail?paperId=" + URLEncoder.encode(paperDetailDto.getPaperId());
     }
 
+    @PostMapping("/search-paper")
+    public String searchPaper(@ModelAttribute("content") String searchContent, Model model) throws Exception {
+
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+
+
+        String currentUser = null;
+        if (auth != null && !auth.getName().equals("anonymousUser")) {
+            currentUser = auth.getName();
+        }
+
+
+        model.addAttribute("currentUser", currentUser);
+        model.addAttribute("pageNumber", 0);
+
+            model.addAttribute("pageNumber", 0);
+            model.addAttribute("artiles", scientificPaperService.findByContent(searchContent));
+
+
+        return "home";
+    }
+
     @GetMapping("/paper/truncate")
     public String truncateAcademicRank(Model model) throws Exception {
 

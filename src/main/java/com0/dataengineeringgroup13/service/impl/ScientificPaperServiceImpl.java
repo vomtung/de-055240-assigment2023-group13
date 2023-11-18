@@ -53,6 +53,29 @@ public class ScientificPaperServiceImpl implements ScientificPaperService {
         return paperDtos;
     }
 
+    @Override
+    public List<PaperDto> findByContent(String content) throws SQLException {
+
+        List<PaperDto> paperDtos = new ArrayList<>();
+
+        Statement stmt = dataConnection.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM  PAPER WHERE  ANY() LIKE " + " '%" + content + "%' " +
+                "                 LIMIT "  + AppContanst.NUMBER_RECORD_PER_PAGE);
+
+        while (rs.next()) {
+            PaperDto paperDto = new PaperDto();
+            paperDto.setPaperId(rs.getRowId("@rid").toString());
+            paperDto.setSubject(rs.getString("SUBJECT"));
+            paperDto.setContent(rs.getString("CONTENT"));
+            paperDto.setAuthor(rs.getString("AUTHOR"));
+            paperDto.setUserIdentifier(rs.getString("USER_IDENTIFIER"));
+
+            paperDtos.add(paperDto);
+        }
+
+        return paperDtos;
+    }
+
     public PaperDetailDto findById(String paperId) throws SQLException {
 
         Statement stmt = dataConnection.createStatement();

@@ -79,6 +79,16 @@
       </tr>
       </thead>
       <tbody>
+      <div class="mb-3" style="margin-left:100px;margin-right:100px;margin-bottom:50px;margin-top:30px;display: flex;">
+         <form th:action="@{/search-paper}" th:object="${searchDetail}" method="post">
+            <label class="form-label" for="content" >Search Content </label>
+            <input class="form-control" id="content" name="content" placeholder="paper content"/>
+            <div class="mb-3">
+               <button class="btn btn-primary mb-3" type="submit">Search</button>
+               <!--or <a class="link-primary" th:href="@{/registration}">Register</a>-->
+            </div>
+         </form>
+      </div>
       <tr th:if="${artiles.empty}">
          <td colspan="2"> No Data Available </td>
       </tr>

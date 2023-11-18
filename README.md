@@ -156,5 +156,5 @@ INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('University of Chicago'
 
 INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('University of California Berkeley', 'USA');
 
-
+SELECT FROM Profile WHERE ANY() LIKE '%danger%'
 </pre>
