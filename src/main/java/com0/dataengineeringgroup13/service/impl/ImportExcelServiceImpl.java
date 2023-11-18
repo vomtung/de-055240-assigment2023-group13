@@ -73,6 +73,7 @@ public class ImportExcelServiceImpl implements ImportExcelService {
                     case STRING:
                         System.out.println(" cell:" + cell.getStringCellValue());
                         String value = cell.getStringCellValue();
+                        value = value.replaceAll("[^\\dA-Za-z.,]","");
 
                         if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
 

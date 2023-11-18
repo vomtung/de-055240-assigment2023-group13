@@ -54,6 +54,10 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
 
             Row row = iterator.next();
             int rowNum = row.getRowNum();
+            System.out.println("==rowNum rowNum rowNum:" + rowNum);
+            //System.out.println("== EXCEL_USER_LIST_HEADER_ROW_INDEX:" + AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX);
+            //System.out.println("==rowFactor.equals(rowNum%EXCEL_IMPORT_NUMBER_OF_THREAD:" + rowFactor.equals(rowNum%EXCEL_IMPORT_NUMBER_OF_THREAD));
+
 
             if (rowNum > AppContanst.EXCEL_USER_LIST_HEADER_ROW_INDEX && (rowFactor.equals(rowNum%EXCEL_IMPORT_NUMBER_OF_THREAD))) {
                 readRow(scientificPapers, row);
@@ -78,6 +82,9 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
 
         Statement stmt = conn.createStatement();
 
+        //System.out.println("==excel subject:" + scientificPaper.getSubject());
+        //System.out.println("==excel content:" + scientificPaper.getContent());
+
         stmt.executeQuery("INSERT INTO  PAPER(SUBJECT, CONTENT, AUTHOR, USER_IDENTIFIER) " +
                 "            VALUES('"+scientificPaper.getSubject()+"', '"+scientificPaper.getContent()+"','"+scientificPaper.getAuthor()+"',''"+")");
 
@@ -88,13 +95,15 @@ public class ImportExcelAsyncServiceImpl implements ImportExcelAsyncService {
         for (int i = 0; i < AppContanst.EXCEL_COLUMN_SIZE; i++) {
 
             Cell cell = row.getCell(i);
+            //System.out.println("===row index getRowNum:" + row.getRowNum());
 
             if (cell != null) {
                 switch (cell.getCellType()) {
                     case STRING:
                         logger.info(" cell:" + cell.getStringCellValue());
+                        System.out.println("===cell:" + cell.getStringCellValue());
                         String value = cell.getStringCellValue();
-                        value = value.replaceAll("[^A-Za-z0-9]","");
+                        value = value.replaceAll("[^A-Za-z0-9.,]","");
 
                         if (PaperColumnIndex.SUBJECT_PAPER.getColumnIndex().equals(cell.getColumnIndex())) {
 
