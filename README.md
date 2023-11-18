@@ -41,15 +41,9 @@ go to \orientdb-community-version\bin, run server.bat
 </pre>
 
 Open Console
-go to \orientdb-community-version\bin, run console.sh
+go to \orientdb-community-version\bin, run console.sh, console.bat
 <pre>
-.\console.sh
-</pre>
-
-Open Console
-go to \orientdb-community-version\bin, run console.sh
-<pre>
-.\console.sh
+.\console.bat
 </pre>
 
 go to  http://172.168.98.82:2480/studio/index.html
@@ -159,4 +153,5 @@ INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('University of Californ
 SELECT FROM Profile WHERE ANY() LIKE '%danger%'
 
 connect  remote:localhost/de_assigment_group13  root 123456
+
 </pre>
