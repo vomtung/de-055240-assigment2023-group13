@@ -4,6 +4,7 @@ package com0.dataengineeringgroup13.controller;
 import com0.dataengineeringgroup13.dto.ScholarDto;
 import com0.dataengineeringgroup13.dto.UniversityDto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -22,27 +23,15 @@ import java.util.Properties;
 @Controller
 public class UniversityController {
 
-    @Value("${orientdb.connection.url}")
-    private String connectionUrl;
-
-    @Value("${orientdb.username}")
-    private String username;
-
-    @Value("${orientdb.password}")
-    private String password;
+    @Autowired
+    private Connection dataConnection;
 
     @GetMapping("/university")
-    public String index(Model model) throws Exception{
+    public String university(Model model) throws Exception{
 
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 
-        Properties info = new Properties();
-        info.put("user", username);
-        info.put("password", password);
-
-        Connection conn = DriverManager.getConnection(connectionUrl, info);
-
-        Statement stmt = conn.createStatement();
+        Statement stmt = dataConnection.createStatement();
         List<UniversityDto> universities = new ArrayList<UniversityDto>();
 
         //Dto: jv transfer object
@@ -50,7 +39,7 @@ public class UniversityController {
         //TODO
         //Create university vertex
         //select data similar example bellow
-        ResultSet rs = stmt.executeQuery("SELECT *FROM UNIVERSITY");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM UNIVERSITY");
         
         while (rs.next()) {
             UniversityDto dto = new UniversityDto();
@@ -72,6 +61,75 @@ public class UniversityController {
         model.addAttribute("currentUser", currentUser);
 
         return "university";
+    }
+
+    @GetMapping("/university/generate")
+    public String generate(Model model) throws Exception{
+
+
+        /*Statement stmt = dataConnection.createStatement();
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 1 + ",'Doctor of Philosophy', 'Ph.D')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 2 + ",'Doctor of Arts', 'DA')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 3 + ",'Doctor of Business Administration', 'DBA')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 4 + ",'Doctor of Canon Law', 'JCD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 5 + ",'Doctor of Civil Law', 'DCL')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 6 + ",'Doctor of Education', 'EdD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 7 + ",'Doctor of Medicine', 'MD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 8 + ",'Doctor of Psychology', 'PsyD')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 9 + ",'Doctor of Science', 'DSC')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 10 + ",'Assistant Professor', 'Asst. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 11 + ",'Lecturer', 'Lect')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 12 + ",'Instructor', 'Inst')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 13 + ",'Research Professor', 'Res. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 14 + ",'Adjunct Professor', 'Adj. Prof')"
+        );
+
+        stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
+                "            VALUES(" + 15 + ",'Visiting Professor', 'Vis. Prof')"
+        );*/
+
+        return "generate-result";
     }
 }
 // Nation of university
