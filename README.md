@@ -138,6 +138,8 @@ DELETE vertex FROM user where usr_id > 0;
 
 TRUNCATE CLASS ACADEMIC_RANK UNSAFE;
 
+TRUNCATE CLASS PAPER UNSAFE;
+
 TRUNCATE CLASS USER UNSAFE;
 
 INSERT INTO UNIVERSITY (UNIVERSITY_NAME, NATION) VALUES ('Harvard University', 'USA');
@@ -154,4 +156,8 @@ SELECT FROM Profile WHERE ANY() LIKE '%danger%'
 
 connect  remote:localhost/de_assigment_group13  root 123456
 
+.\oetl.bat post.json
+.\oetl.bat post.json
+.\oetl.bat post.json
+.\oetl.bat commonConfig.json
 </pre>

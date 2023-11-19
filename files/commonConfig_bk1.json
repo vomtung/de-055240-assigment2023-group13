@@ -1,0 +1,21 @@
+{
+  "source": { "file": { "path": "./temp/datasets/posts.csv" } },
+  "extractor": { "csv": {} },
+  "transformers": [
+    { "vertex": { "class": "PAPER1" } }
+  ],
+  "loader": {
+    "orientdb": {
+      "dbURL": "remote:localhost/demodb",
+      "dbUser": "admin",
+      "dbPassword": "admin",
+      "serverUser": "root",
+      "serverPassword": "123456",
+      "dbType": "graph",
+      "classes": [
+        {"name": "PAPER1", "extends": "V"}
+      ], "indexes": [
+      ]
+    }
+  }
+}

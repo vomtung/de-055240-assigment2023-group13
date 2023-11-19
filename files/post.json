@@ -2,18 +2,17 @@
   "source": { "file": { "path": "./temp/datasets/posts.csv" } },
   "extractor": { "csv": {} },
   "transformers": [
-    { "vertex": { "class": "Post" } }
+    { "vertex": { "class": "PAPER" } }
   ],
   "loader": {
     "orientdb": {
 		"dbURL": "remote:localhost/de_assigment_group13",
-		"dbUser": "root",
-		"dbPassword": 123456,
+		"serverUser": "root",
+		"serverPassword": "123456",
        "dbType": "graph",
        "classes": [
          
        ], "indexes": [
-         {"class":"Post", "fields":["id:integer"], "type":"UNIQUE" }
        ]
     }
   }
