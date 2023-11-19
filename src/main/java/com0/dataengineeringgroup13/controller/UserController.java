@@ -92,6 +92,14 @@ public class UserController {
                 "            VALUES("+ 0+",'admin', 'admin','admin@mail.kom' ,'admin')"
         );
 
+        stmt.executeQuery("INSERT INTO    USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
+                "            VALUES("+ 1+",'tungvm', 'tungvm','tungvm@mail.kom' ,'tungvm')"
+        );
+
+        stmt.executeQuery("INSERT INTO    USER(USR_ID, USR_NAME, FIRST_NAME, EMAIL, LAST_NAME) " +
+                "            VALUES("+ 2+",'vmtung', 'vmtung','vmtung@mail.kom' ,'vmtung')"
+        );
+
         int maxSize = AppContanst.DEFAULT_USER_NUMBER_GENERATE;
         if (dataSize != null && dataSize != 0) {
             maxSize = dataSize;

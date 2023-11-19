@@ -66,7 +66,7 @@ public class UniversityController {
     @GetMapping("/university/generate")
     public String generate(Model model) throws Exception{
 
-        
+
         /*Statement stmt = dataConnection.createStatement();
 
         stmt.executeQuery("INSERT INTO    ACADEMIC_RANK(ACA_ID, RANK_NAME, ABBREVIATION) " +
